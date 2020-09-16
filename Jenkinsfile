@@ -11,13 +11,17 @@ pipeline {
 
         stage('Checkout SCM') {
             steps {
-                checkout([
-                 $class: 'GitSCM',
-                 branches: [[name: 'bhavna']],
-                 userRemoteConfigs: [[
-                    url: 'https://github.com:bhavnasagta/java-cicd.git',
-                 ]]
-                ])
+                script {
+                      if  (env.BRANCH_NAME != 'master') {
+                       echo '*************************************************'
+                       echo 'There is no Closed Pull Request in Master branch'
+                       echo '*************************************************'
+                       sh 'exit 1'
+                      }
+                      else
+                      checkout scm
+                 }
+                }
             }
         }
 
