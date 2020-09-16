@@ -5,8 +5,7 @@ pipeline {
     stages {
        stage('Clean WorkSpace') {
         steps {
-           sh 'rm -rf *' 
-           sh 'env'       
+           sh 'rm -rf *'    
         }
        }
 
