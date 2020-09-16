@@ -33,7 +33,7 @@ pipeline {
     stage('Pushing latest jar to S3') {
       steps {
          sh "ls -l target/javaparser-maven-sample-?.?-SNAPSHOT.jar"
-         sh "aws s3 cp target/javaparser-maven-sample-?.?-SNAPSHOT.jar  s3://sample-bucket/javaparser-maven-sample.jar"
+         sh "aws s3 cp target/javaparser-maven-sample-?.?-SNAPSHOT.jar  s3://locus-bucket/javaparser-maven-sample.jar"
       }
     }
 
