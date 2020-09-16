@@ -42,16 +42,16 @@ pipeline {
 
   post {
       success {
-        sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
-    -H "Content-Type: application/json" \
-    -X POST \
-    -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline-testing-multibranch/$BUILD_NUMBER/console\"}"'
-      }
+        sh 'curl "https://api.GitHub.com/repos/<GitHubUserName>/<REPO_NAME>/statuses/$GIT_COMMIT?access_token=<YOUR_GITHUB_TOKEN>" \
+      -H "Content-Type: application/json" \
+      -X POST \
+      -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"<YOUR_JENKINS_URL>/job/<JenkinsProjectName>/$BUILD_NUMBER/console\"}"'
+     }
       failure {
-        sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
-    -H "Content-Type: application/json" \
-    -X POST \
-    -d "{\"state\": \"failure\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline-testing-multibranch/$BUILD_NUMBER/console\"}"'
-      }
-  }
+          sh 'curl "https://api.GitHub.com/repos/<GitHubUserName>/<REPO_NAME>/statuses/$GIT_COMMIT?access_token=<YOUR_GITHUB_TOKEN>" \
+      -H "Content-Type: application/json" \
+      -X POST \
+      -d "{\"state\": \"failure\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"<YOUR_JENKINS_URL>/job/<JenkinsProjectName>/$BUILD_NUMBER/console\"}"'
+     }
+   }
 }
