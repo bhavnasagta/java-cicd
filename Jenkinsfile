@@ -25,9 +25,6 @@ pipeline {
         }
 
         stage('Build') {
-            when {
-                branch 'master'
-              }
             steps {
                sh 'mvn -B -Dresume=false release:perform -Darguments="-DskipTests"'
                sh 'mvn clean install -DskipTests=true'
