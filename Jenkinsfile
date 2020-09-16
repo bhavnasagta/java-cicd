@@ -12,7 +12,7 @@ pipeline {
         steps {
             checkout([
              $class: 'GitSCM',
-             branches: [[name: 'master', 'bhavna']],
+             branches: [[name: 'bhavna']],
              userRemoteConfigs: [[
                 url: 'https://github.com:bhavnasagta/java-cicd.git',
              ]]
