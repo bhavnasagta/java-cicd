@@ -22,7 +22,6 @@ pipeline {
                       checkout scm
                  }
                 }
-            }
         }
 
         stage('Build') {
@@ -42,18 +41,19 @@ pipeline {
           }
         }
     }
-        post {
-            success {
-              sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
-          -H "Content-Type: application/json" \
-          -X POST \
-          -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline/$BUILD_NUMBER/console\"}"'
-            }
-            failure {
-              sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
-          -H "Content-Type: application/json" \
-          -X POST \
-          -d "{\"state\": \"failure\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline/$BUILD_NUMBER/console\"}"'
-            }
-        }
+
+  post {
+      success {
+        sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
+    -H "Content-Type: application/json" \
+    -X POST \
+    -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline/$BUILD_NUMBER/console\"}"'
+      }
+      failure {
+        sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
+    -H "Content-Type: application/json" \
+    -X POST \
+    -d "{\"state\": \"failure\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline/$BUILD_NUMBER/console\"}"'
+      }
+  }
 }
