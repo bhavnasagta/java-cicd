@@ -5,7 +5,8 @@ pipeline {
     stages {
        stage('Clean WorkSpace') {
         steps {
-           sh 'rm -rf *'        
+           sh 'rm -rf *' 
+           sh 'env'       
         }
        }
 
@@ -44,13 +45,13 @@ pipeline {
         sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
     -H "Content-Type: application/json" \
     -X POST \
-    -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline/$BUILD_NUMBER/console\"}"'
+    -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline-testing-multibranch/$BUILD_NUMBER/console\"}"'
       }
       failure {
         sh 'curl "https://api.GitHub.com/repos/bhavnasagta/java-cicd/statuses/$GIT_COMMIT?access_token=344702019fa7c59d63907cd8241c518d189324d8" \
     -H "Content-Type: application/json" \
     -X POST \
-    -d "{\"state\": \"failure\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline/$BUILD_NUMBER/console\"}"'
+    -d "{\"state\": \"failure\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"ci.elanic.co/job/java-cicd-pipeline-testing-multibranch/$BUILD_NUMBER/console\"}"'
       }
   }
 }
