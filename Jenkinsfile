@@ -10,12 +10,14 @@ pipeline {
        }
 
         stage('Checkout SCM') {
-          checkout scm
+          steps {
+            checkout scm
+          }
         }
 
         stage('Run xyz unit tests') {
           steps {
-            sh "echo "Running unit test cases on creation of pull request.""
+            echo "Running unit test cases on creation of pull request."
           }
 
         }
